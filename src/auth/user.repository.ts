@@ -19,7 +19,6 @@ export class UserRepository extends Repository<User> {
       password: hashedPassword,
     });
 
-    console.log(hashedPassword);
     try {
       await this.save(user);
     } catch (err) {

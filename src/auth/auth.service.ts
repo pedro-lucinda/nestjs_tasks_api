@@ -5,6 +5,7 @@ import { UserRepository } from './user.repository';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from './types/jwt-payload.interface';
+import { User } from './user.entity';
 
 @Injectable()
 export class AuthService {
@@ -13,6 +14,18 @@ export class AuthService {
     private userRepository: UserRepository,
     private jwtService: JwtService,
   ) {}
+
+  async listUsers(): Promise<Omit<User, 'password'>[]> {
+    const users = await this.userRepository.find();
+    const formmated = users.map((user: User) => {
+      return {
+        userName: user.userName,
+        id: user.id,
+      };
+    });
+
+    return formmated as Omit<User, 'password'>[];
+  }
 
   async signUp(authCredentialsDTO: AuthCredentialsDTO): Promise<void> {
     return await this.userRepository.createUser(authCredentialsDTO);
@@ -26,7 +39,7 @@ export class AuthService {
     const isPassWordValid =
       user && (await bcrypt.compare(password, user.password));
 
-    if (user || !isPassWordValid) {
+    if (!user || !isPassWordValid) {
       throw new UnauthorizedException('Please check your credentials');
     }
 

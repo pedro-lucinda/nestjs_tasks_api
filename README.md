@@ -17,11 +17,7 @@
 
   <img alt="License" src="https://img.shields.io/github/license/pedro-lucinda/nestjs-tasks?color=56BEB8">
 
-  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/pedro-lucinda/nestjs-tasks?color=56BEB8" /> -->
 
-  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/pedro-lucinda/nestjs-tasks?color=56BEB8" /> -->
-
-  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/pedro-lucinda/nestjs-tasks?color=56BEB8" /> -->
 </p>
 
 <!-- Status -->

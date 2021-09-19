@@ -2,9 +2,13 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TasksModule } from './tasks/tasks.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      envFilePath: [`.env.stage.${process.env.STAGE}`],
+    }),
     TasksModule,
     AuthModule,
     TypeOrmModule.forRoot({
@@ -13,7 +17,7 @@ import { AuthModule } from './auth/auth.module';
       port: 5432,
       username: 'postgres',
       password: 'postgres',
-      database: 'task_management',
+      database: 'tasks_management',
       autoLoadEntities: true,
       synchronize: true,
     }),

@@ -15,15 +15,19 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => ({
-        type: 'postgres',
-        url: configService.get('POSTGRES_URL'),
-        autoLoadEntities: true,
-        synchronize: true,
-        ssl: {
-          rejectUnauthorized: false,
-        },
-      }),
+      useFactory: async (configService: ConfigService) => {
+        const isProduction = configService.get('STAGE') === 'prod';
+        return {
+          type: 'postgres',
+          url: configService.get('POSTGRES_URL'),
+          autoLoadEntities: true,
+          synchronize: true,
+          ssl: isProduction,
+          extra: {
+            ssl: { rejectUnauthorized: false },
+          },
+        };
+      },
     }),
   ],
 })

@@ -4,7 +4,7 @@ import { User } from 'src/auth/user.entity';
 import { CreateTaskDTO } from './DTO/create-task.dto';
 import { GetTasksFilterDTO } from './DTO/get-tasks-filter.dto';
 import { UpdateTaskStatusDTO } from './DTO/update-task-status.dto';
-import { TasksStatus } from './task-status.enum';
+import { TasksStatus } from './types/task-status.enum';
 import { Task } from './task.entity';
 import { TasksRepository } from './task.repository';
 

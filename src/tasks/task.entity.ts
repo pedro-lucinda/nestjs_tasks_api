@@ -2,7 +2,7 @@
 import { Exclude } from 'class-transformer';
 import { User } from 'src/auth/user.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { TasksStatus } from './task-status.enum';
+import { TasksStatus } from './types/task-status.enum';
 
 @Entity()
 export class Task {

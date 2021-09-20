@@ -22,7 +22,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           url: configService.get('POSTGRES_URL'),
           autoLoadEntities: true,
           synchronize: true,
-          ssl: isProduction,
           extra: {
             ssl: { rejectUnauthorized: false },
           },
